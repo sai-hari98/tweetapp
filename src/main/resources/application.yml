@@ -1,0 +1,23 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.tweetapp.tweetapp.serializer.ForgotPwdSerializer
+  application:
+    name: tweet-app
+#  data:
+#    mongodb:
+#      url: mongodb://localhost:27017
+##      host: localhost
+##      port: 27017
+#      database: tweetapp
+
+server:
+  port: 8080
+
+jwt:
+  secretkey: tweetapp
+aws:
+  accessKey: AKIA5VHUXCGLB4U7FG5D
+  secretKey: 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
