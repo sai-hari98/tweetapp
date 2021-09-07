@@ -15,6 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().httpBasic().and().authorizeRequests()
                 .antMatchers("/swagger*/**").permitAll()
                 .antMatchers("/api/v1.0/tweets/login").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/api/v1.0/tweets/register").permitAll()
                 .antMatchers("/api/v1.0/tweets/forgot").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
