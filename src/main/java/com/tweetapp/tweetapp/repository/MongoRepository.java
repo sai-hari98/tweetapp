@@ -39,7 +39,7 @@ public class MongoRepository {
     public List<User> getAllUsers(){
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
         List<User> users = dynamoDBMapper.scan(User.class, scanExpression);
-        return users;
+        return new ArrayList<>(users);
     }
 
     public void createUser(User user){
@@ -54,7 +54,7 @@ public class MongoRepository {
         while(tweetIterator.hasNext()){
             tweets.add(tweetIterator.next());
         }*/
-        return tweets;
+        return new ArrayList<>(tweets);
     }
 
     public List<Tweet> getUserTweets(String userName){
@@ -114,11 +114,11 @@ public class MongoRepository {
 
     public List<User> findUsersBySearchText(String searchParam){
         List<User> users = getAllUsers();
-        return users.stream().filter(user -> {
+        return new ArrayList<>(users.stream().filter(user -> {
             return user.getUserName().contains(searchParam)
                     || user.getFirstName().contains(searchParam)
                     || user.getLastName().contains(searchParam);
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toList()));
     }
 
 }
