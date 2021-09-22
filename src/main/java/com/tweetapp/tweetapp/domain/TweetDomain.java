@@ -159,7 +159,7 @@ public class TweetDomain {
                     return 0;
                 }
             };
-            tweets.sort(timeStampComparator);
+            Collections.sort(tweets, timeStampComparator);
             tweetDtoList = tweets.stream().map(tweet -> {
                 TweetDto tweetDto = new TweetDto();
                 BeanUtils.copyProperties(tweet, tweetDto);
