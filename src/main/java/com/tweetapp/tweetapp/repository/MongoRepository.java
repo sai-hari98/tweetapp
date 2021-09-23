@@ -62,7 +62,7 @@ public class MongoRepository {
         eav.put(":val1", new AttributeValue().withS(userName));
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
                 .withFilterExpression("userName = :val1").withExpressionAttributeValues(eav);
-        return dynamoDBMapper.scan(Tweet.class, scanExpression);
+        return new ArrayList<>(dynamoDBMapper.scan(Tweet.class, scanExpression));
     }
 
     public Tweet getTweet(String id){
