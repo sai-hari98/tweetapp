@@ -1,9 +1,17 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ec2-18-223-122-19.us-east-2.compute.amazonaws.com:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: com.tweetapp.tweetapp.serializer.ForgotPwdSerializer
+    consumer:
+      group-id: kafka-consumer-forgot-pwd
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.tweetapp.tweetapp.deserializer.ForgotPwdDeserializer
+    listener:
+      ack-mode: manual
   application:
     name: tweet-app
 #  data:

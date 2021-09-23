@@ -121,6 +121,17 @@ public class UserDomain {
         response.setUsers(users);
         return response;
     }
+    
+
+    public void updateForgottedPwd(ForgotPwdRequest forgotPwdRequest) {
+    	User user = mongoRepository.findUserByUserName(forgotPwdRequest.getUserName());
+        String encPwd = Base64.getEncoder().encodeToString(forgotPwdRequest.getNewPwd().getBytes());
+        if(user != null && !user.getPwd().equals(encPwd)){
+            user.setPwd(encPwd);
+            mongoRepository.updateUser(user);
+        }
+        
+    }
 
     /**
      * To generate JWT for login

@@ -62,7 +62,7 @@ public class MongoRepository {
         eav.put(":val1", new AttributeValue().withS(userName));
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
                 .withFilterExpression("userName = :val1").withExpressionAttributeValues(eav);
-        return new ArrayList<>(dynamoDBMapper.scan(Tweet.class, scanExpression));
+        return dynamoDBMapper.scan(Tweet.class, scanExpression);
     }
 
     public Tweet getTweet(String id){
@@ -82,6 +82,17 @@ public class MongoRepository {
             .withExpectedEntry("tweet_id",
                     new ExpectedAttributeValue(
                             new AttributeValue().withS(tweet.getId())
+                    )));
+    }
+    
+    public void updateUser(User user){
+        /*Query query = new Query(Criteria.where("id").is(tweet.getId()));
+        mongoTemplate.findAndReplace(query, tweet, "tweets");*/
+        /*tweetRepository.save(tweet);*/
+        dynamoDBMapper.save(user, new DynamoDBSaveExpression()
+            .withExpectedEntry("user_id",
+                    new ExpectedAttributeValue(
+                            new AttributeValue().withS(user.getId())
                     )));
     }
 

@@ -3,6 +3,7 @@ package com.tweetapp.tweetapp.domain;
 import com.tweetapp.tweetapp.beans.Reply;
 import com.tweetapp.tweetapp.beans.Tweet;
 import com.tweetapp.tweetapp.constants.TweetAppConstants;
+import com.tweetapp.tweetapp.dto.request.ForgotPwdRequest;
 import com.tweetapp.tweetapp.dto.request.TweetRequest;
 import com.tweetapp.tweetapp.dto.response.ReplyDto;
 import com.tweetapp.tweetapp.dto.response.TweetDto;
@@ -159,7 +160,7 @@ public class TweetDomain {
                     return 0;
                 }
             };
-            Collections.sort(tweets, timeStampComparator);
+            tweets.sort(timeStampComparator);
             tweetDtoList = tweets.stream().map(tweet -> {
                 TweetDto tweetDto = new TweetDto();
                 BeanUtils.copyProperties(tweet, tweetDto);
