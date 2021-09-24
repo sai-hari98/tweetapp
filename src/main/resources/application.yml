@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: ec2-18-223-122-19.us-east-2.compute.amazonaws.com:9092
+    bootstrap-servers: ec2-52-14-230-101.us-east-2.compute.amazonaws.com:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: com.tweetapp.tweetapp.serializer.ForgotPwdSerializer
